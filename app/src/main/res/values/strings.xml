@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Test</string>
+    <string name="click_me">Click me</string>
+    <string name="text">Hello!</string>
+    <string name="predict">Предсказать</string>
+    <string name="textView" />
+</resources>
