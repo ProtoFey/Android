@@ -3,19 +3,19 @@ package com.example.cat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     final Random random = new Random();
+    int i = random.nextInt(10);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,16 +28,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 randomMethod();
+                i = random.nextInt();
             }
         });
     }
 
     public void randomMethod() {
-        int i = random.nextInt(10);
-        if (i == 0) {
+        if (i == 5) {
             toast();
         }
-        if (i != 0) {
+        if (i != 5) {
             toText();
         }
     }
@@ -47,12 +47,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
     public void toast() {
-        Toast toast = Toast.makeText(getApplicationContext(),"Ты чего наделал", Toast.LENGTH_LONG);
-        LinearLayout toastContainer = (LinearLayout) toast.getView();
-        toastContainer.setBackgroundColor(Color.TRANSPARENT);
-        ImageView catImageView = new ImageView(getApplicationContext());
-        catImageView.setImageResource(R.drawable.like_smile);
-        toastContainer.addView(catImageView, 0);
+        Toast toast = new Toast(getApplicationContext());
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_layout,
+                (ViewGroup) findViewById(R.id.toast));
+        toast.setGravity(Gravity.BOTTOM, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
         toast.show();
     }
 
