@@ -1,7 +1,6 @@
 package com.example.cat;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -37,13 +36,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (i == 5) {
             toast();
         }
-        if (i != 5) {
+        if (i == 6) {
+            toImage();
+        }
+        if (i != 5 & i != 6) {
             toText();
         }
     }
 
     public void toText() {
         Intent intent = new Intent(MainActivity.this, Text.class);
+        startActivity(intent);
+    }
+    public void toImage() {
+        Intent intent = new Intent(MainActivity.this, Image.class);
         startActivity(intent);
     }
     public void toast() {
